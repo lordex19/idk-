@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accesso Fotocamera</title>
+</head>
+<body>
+  <h2>Richiesta Accesso Fotocamera</h2>
+  <p>Questa pagina richiede il permesso di usare la fotocamera per una videochiamata autorizzata.</p>
+  <video id="video" width="320" height="240" autoplay></video>
+
+  <script>
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const videoElement = document.getElementById('video');
+        videoElement.srcObject = stream;
+      } catch (err) {
+        alert('Accesso alla fotocamera negato o non disponibile.');
+        console.error(err);
+      }
+    }
+
+    startCamera();
+  </script>
+</body>
+</html>
